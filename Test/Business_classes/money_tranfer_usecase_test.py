@@ -60,3 +60,27 @@ class MoneyTransferUseCaseTest(unittest.TestCase):
         command = MoneyTransferCommand("123", "", 100)
         with self.assertRaises(Exception):
             use_case.transfer(command)
+
+    def test_one_account_number_is_None(self):
+        self.repo["123"] = Account("123", "Bartek", 50)
+        self.repo["456"] = Account("456", "Lukasz", 0)
+        use_case = MoneyTransferUseCase(self.repo)
+        command = MoneyTransferCommand(a_account_number="123", b_account_number=None, money_amount=100)
+        with self.assertRaises(Exception):
+            use_case.transfer(command)
+
+    def test_negative_money_amount(self):
+        self.repo["123"] = Account("123", "Bartek", 444)
+        self.repo["456"] = Account("456", "Lukasz", 0)
+        use_case = MoneyTransferUseCase(self.repo)
+        command = MoneyTransferCommand("123", "456", -10)
+        with self.assertRaises(Exception):
+            use_case.transfer(command)
+
+    def test_zero_money_amount(self):
+        self.repo["123"] = Account("123", "Bartek", 444)
+        self.repo["456"] = Account("456", "Lukasz", 0)
+        use_case = MoneyTransferUseCase(self.repo)
+        command = MoneyTransferCommand("123", "456", 0)
+        with self.assertRaises(Exception):
+            use_case.transfer(command)
