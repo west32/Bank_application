@@ -8,3 +8,5 @@ class MoneyTransferCommand:
     def is_number_account_valid(self):
         if self.a_account_number is None or self.b_account_number is None:
             raise Exception("account number is empty")
+        elif self.a_account_number is "" or self.b_account_number is "":
+            raise Exception("missing number account")
