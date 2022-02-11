@@ -9,17 +9,18 @@ class MoneyTransferUsecase():
         self.accounts_data_base = accounts_data_base
 
 
-    def generate_accounts(self):
+    def generate_accounts(self,number_of_accounts):
 
-        account= None
-        for _ in range(10):
+
+        for _ in range(number_of_accounts):
             random_list = [random.randint(0, 9) for number in range(26)]
             str_account_number = ""
             for number in random_list:
                 str_account_number += str(number)
+
             account = generate_account()
 
-            self.accounts_data_base[account.account_id]=account
+            self.accounts_data_base[account.account_id]= account
         return self.accounts_data_base
 
 
@@ -28,5 +29,5 @@ class MoneyTransferUsecase():
         pass
 
 przelew= MoneyTransferUsecase()
-przelew.generate_accounts()
+przelew.generate_accounts(10)
 print(przelew.accounts_data_base)

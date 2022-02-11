@@ -7,12 +7,13 @@ class Account():
         self.open_transaction = open_transaction
         self.balance = balance
 
+    def __str__(self):
+        return f" numer konta:{self.account_id}, imie:{self.name}, saldo:{self.balance} złotych"
 
     def add_money(self):
         pass
 
-    def __str__(self):
-        return f" numer konta:{self.account_id}, imie:{self.name}, saldo:{self.balance} złotych"
+
 
 
     def sub_money(self):
@@ -36,6 +37,10 @@ def generate_account():
         str_account_number += str(number)
     int_account_number = int(str_account_number)
     name= random.choice(names)
-    balance= random.randint(-100,99999)
+    balance= random.randint(-100,9999)
     user_account=Account(int_account_number,name,balance)
     return user_account
+
+konto= generate_account()
+
+print(konto)
