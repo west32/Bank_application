@@ -7,8 +7,12 @@ class Account():
         self.open_transaction = open_transaction
         self.balance = balance
 
+
     def add_money(self):
         pass
+
+    def __str__(self):
+        return f" numer konta:{self.account_id}, imie:{self.name}, saldo:{self.balance} złotych"
 
 
     def sub_money(self):
