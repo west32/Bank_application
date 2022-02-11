@@ -29,7 +29,7 @@ class MoneyTransferUseCaseTest(unittest.TestCase):
         with self.assertRaises(Exception):
             use_case.transfer(command)
 
-    def test_two_accaunts_valid(self):
+    def test_two_accounts_valid(self):
         self.repo["123"] = Account("123", "Bartek", 444)
         self.repo["456"] = Account("456", "Lukasz", 0)
         use_case = MoneyTransferUseCase(self.repo)
@@ -44,3 +44,13 @@ class MoneyTransferUseCaseTest(unittest.TestCase):
         command = MoneyTransferCommand('123', '456', 222)
         with self.assertRaises(Exception):
             use_case.transfer(command)
+
+    def test_one_account_balance_is_None(self):
+        self.repo["123"] = Account("123", "Bartek",444)
+        use_case = MoneyTransferUseCase(self.repo)
+        command = MoneyTransferCommand("123", "456", None)
+        use_case.transfer(command)
+        with self.assertRaises(Exception):
+            use_case.transfer(command)
+
+
