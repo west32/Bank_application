@@ -10,3 +10,11 @@ class MoneyTransferCommand:
             raise Exception("account number is empty")
         elif self.a_account_number is "" or self.b_account_number is "":
             raise Exception("missing number account")
+
+    def is_money_amount_greater_than_0(self):
+        if self.money_amount < 0:
+            raise Exception("Transfer money amount can't be negative value")
+
+    def is_money_amount_0(self):
+        if self.money_amount == 0:
+            raise Exception("Transfer money amount have to be grater than 0")
