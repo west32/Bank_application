@@ -1,5 +1,7 @@
+import random
+
 class Account():
-    def __init__(self, account_id,name,open_transaction,balance):
+    def __init__(self, account_id,name,balance, open_transaction=None):
         self.account_id = account_id
         self.name = name
         self.open_transaction = open_transaction
@@ -21,3 +23,15 @@ class Account():
         pass
 
 
+names= ["Kasia","Bartek","Magda","Maja","Tomek","Michał","Łukasz","Martyna"]
+
+def generate_account():
+    random_list = [random.randint(0, 9) for number in range(26)]
+    str_account_number = ""
+    for number in random_list:
+        str_account_number += str(number)
+    int_account_number = int(str_account_number)
+    name= random.choice(names)
+    balance= random.randint(-100,99999)
+    user_account=Account(int_account_number,name,balance)
+    return user_account
