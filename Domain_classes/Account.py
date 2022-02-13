@@ -1,7 +1,7 @@
 import random
 
 class Account():
-    def __init__(self, account_id,name,balance, open_transaction=None):
+    def __init__(self, account_id,name,balance:int, open_transaction=None):
         self.account_id = account_id
         self.name = name
         self.open_transaction = open_transaction
