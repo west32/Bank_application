@@ -24,5 +24,10 @@ class MoneyTransferUseCaseTest(unittest.TestCase):
 
             # pozostałe przypadki, pusty numer konta itp
 
+        #
+        #
+        #
 
+        #  dwa konta sa zablokowane
+        #
 
