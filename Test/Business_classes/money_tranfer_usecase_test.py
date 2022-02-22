@@ -28,3 +28,11 @@ class MoneyTransferUseCaseTest(unittest.TestCase):
         command = MoneyTransferCommand("456", "123", 100)
         with self.assertRaises(Exception):
             use_case.transfer(command)
+
+    def test_two_accounts_locked(self):
+        self.repo["123"] = Account('123', 'Bartek', 444, '456')
+        self.repo["456"] = Account('456', 'Łukasz', 0, '123')
+        use_case = MoneyTransferUseCase(self.repo)
+        command = MoneyTransferCommand('123', '456', 222)
+        with self.assertRaises(Exception):
+            use_case.transfer(command)
