@@ -29,6 +29,14 @@ class MoneyTransferUseCaseTest(unittest.TestCase):
         with self.assertRaises(Exception):
             use_case.transfer(command)
 
+    def test_two_accaunts_valid(self):
+        self.repo["123"] = Account("123", "Bartek", 444)
+        self.repo["456"] = Account("456", "Lukasz", 0)
+        use_case = MoneyTransferUseCase(self.repo)
+        command = MoneyTransferCommand("123", "456", 100)
+        use_case.transfer(command)
+        self.assertEqual(self.repo["123"].balance, 344)
+
     def test_two_accounts_locked(self):
         self.repo["123"] = Account('123', 'Bartek', 444, '456')
         self.repo["456"] = Account('456', 'Łukasz', 0, '123')
