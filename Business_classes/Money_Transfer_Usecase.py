@@ -6,3 +6,7 @@ class MoneyTransferUseCase:
 
     def transfer(self, command_transfer):
         pass
+
+#     czy kwota przelewu nie jest wieksza niz stan konta z ktorego przelewamy
+#     czy konta nie sa zablokowane
+#       czy konto istenieje w repo.
