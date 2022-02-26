@@ -1,7 +1,7 @@
 import unittest
-from Domain_classes.Account import Account
-from Business_classes.Money_Transfer_Usecase import MoneyTransferUseCase
-from Business_classes.Money_Transfer_Command import MoneyTransferCommand
+from Account import Account
+from Money_Transfer_Usecase import MoneyTransferUseCase
+from Money_Transfer_Command import MoneyTransferCommand
 
 
 class MoneyTransferUseCaseTest(unittest.TestCase):
