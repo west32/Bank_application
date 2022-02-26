@@ -14,11 +14,11 @@ def run_main():
     command_b = MoneyTransferCommand("456", "123", 50)
     # command_e = MoneyTransferCommand("","456",99)
     # command_e = MoneyTransferCommand("123","789",10)
-    # command_e = MoneyTransferCommand('123','456',999)
+    command_e = MoneyTransferCommand('123','456',999)
     # command_e = MoneyTransferCommand('123', None, 29)
     # command_e = MoneyTransferCommand('123',"", 50)
     # command_e = MoneyTransferCommand('123', '456', -29)
-    command_e = MoneyTransferCommand('123', '456', 0)
+    # command_e = MoneyTransferCommand('123', '456', 0)
     use_case.transfer(command_a)
     use_case.transfer(command_b)
     use_case.transfer(command_e)
@@ -26,7 +26,7 @@ def run_main():
 
 # napisac w metodzie trasfer przed wykonaniem transferu block account
 #  i po wykonaniu unlock account
-# przechodzi trasfer gdzie kwota przekracza balance- poprawic
+
 
 
 
