@@ -8,13 +8,17 @@ class MoneyTransferUseCase:
         self.accounts_data_base = accounts_data_base
 
     def transfer(self, command_transfer:MoneyTransferCommand):
+        if command_transfer.a_account_number not in self.accounts_data_base or command_transfer.b_account_number not in self.accounts_data_base:
+            raise Exception("number account has not found")
         if self.accounts_data_base[command_transfer.a_account_number].balance < command_transfer.money_amount:
-            raise Exception (f"Not enough money to transfer! Your actual account balnce: {self.accounts_data_base[command_transfer.a_account_number].balance}")
+            raise Exception (f"Not enough money to transfer! Your current account balnce: {self.accounts_data_base[command_transfer.a_account_number].balance}")
+        if self.accounts_data_base[command_transfer.a_account_number].open_transaction is not None or self.accounts_data_base[command_transfer.b_account_number].open_transaction is not None:
+            raise Exception("Account has been blocked")
         self.accounts_data_base[command_transfer.a_account_number].sub_money(command_transfer.money_amount)
         self.accounts_data_base[command_transfer.b_account_number].add_money(command_transfer.money_amount)
 
 
 
-#     czy kwota przelewu nie jest wieksza niz stan konta z ktorego przelewamy
+
 #     czy konta nie sa zablokowane
-#       czy konto istenieje w repo.
+#

@@ -13,8 +13,11 @@ def run_main():
     command_a = MoneyTransferCommand("123", "456", 100)
     command_b = MoneyTransferCommand("456", "123", 50)
     # command_e = MoneyTransferCommand("","456",99)
-    # command_e = MoneyTransferCommand("123","789",10)
-    command_e = MoneyTransferCommand('123','456',999)
+    command_e = MoneyTransferCommand("789","123",10)
+    command_e = MoneyTransferCommand("123", "789", 10)
+    # command_e = MoneyTransferCommand("532", "123", 10)
+    # command_e = MoneyTransferCommand("123", "532", 10)
+    # command_e = MoneyTransferCommand('123','456',999)
     # command_e = MoneyTransferCommand('123', None, 29)
     # command_e = MoneyTransferCommand('123',"", 50)
     # command_e = MoneyTransferCommand('123', '456', -29)
@@ -23,6 +26,7 @@ def run_main():
     use_case.transfer(command_b)
     use_case.transfer(command_e)
     print(repo["123"],repo["456"])
+
 
 # napisac w metodzie trasfer przed wykonaniem transferu block account
 #  i po wykonaniu unlock account

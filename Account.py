@@ -20,10 +20,9 @@ class Account:
         self.balance -= money_amount
         return self.balance
 
-    def block_account(self):
-        if self.open_transaction is not None:
-            raise Exception(f"Acconunt {self.account_id} has been blocked")
-
+    def block_account(self, transfer_id):
+        # if open_transaction not null throw exeption
+        pass
 
     def unlock_account(self, tranfer_id):
         pass
