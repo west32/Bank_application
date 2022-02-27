@@ -1,5 +1,6 @@
 from Money_Transfer_Command import MoneyTransferCommand
 from Money_Transfer_Usecase import MoneyTransferUseCase
+from Transaction import Transaction
 
 
 class Account:
@@ -20,9 +21,12 @@ class Account:
         self.balance -= money_amount
         return self.balance
 
-    def block_account(self, transfer_id):
-        # if open_transaction not null throw exeption
-        pass
+    def block_account(self, transaction: Transaction):
+        if self.open_transaction is not None:
+            raise Exception("Account has been blocked")
+        self.open_transaction = transaction.uuid
 
-    def unlock_account(self, tranfer_id):
-        pass
+
+    def unlock_account(self, transaction: Transaction):
+        if self.open_transaction == transaction.uuid:
+            self.open_transaction = None
