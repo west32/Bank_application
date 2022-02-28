@@ -1,4 +1,6 @@
 import uuid
+
+from Account import Account
 from Money_Transfer_Command import MoneyTransferCommand
 from Transaction import Transaction
 import datetime
@@ -18,9 +20,9 @@ class MoneyTransferUseCase:
         a_account.block_account(transaction_log)
         b_account.block_account(transaction_log)
 
-    def update_accounts_balances(self, command_transfer):
-        self.accounts_data_base[command_transfer.a_account_number].sub_money(command_transfer.money_amount)
-        self.accounts_data_base[command_transfer.a_account_number].add_money(command_transfer.money_amount)
+    # def update_accounts_balances(self, a_account:Account, b_account, command_transfer:MoneyTransferCommand):
+    #     a_account.sub_money(command_transfer.money_amount)
+    #     b_account.add_money(command_transfer.money_amount)
 
     def transfer(self, command_transfer: MoneyTransferCommand):
         if command_transfer.a_account_number not in self.accounts_data_base or command_transfer.b_account_number not in self.accounts_data_base:
@@ -37,7 +39,7 @@ class MoneyTransferUseCase:
             self.unlock_accounts(a_account, b_account, transaction_log)
             raise Exception(
                 f"Not enough money to transfer! Your current account balnce: {self.accounts_data_base[command_transfer.a_account_number].balance}")
-
+        # self.update_accounts_balances(a_account, b_account, command_transfer)
         self.accounts_data_base[command_transfer.a_account_number].sub_money(command_transfer.money_amount)
         self.accounts_data_base[command_transfer.b_account_number].add_money(command_transfer.money_amount)
         self.unlock_accounts(a_account, b_account, transaction_log)
