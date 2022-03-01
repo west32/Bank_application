@@ -4,6 +4,7 @@ class MoneyTransferCommand:
         self.b_account_number = b_account_number
         self.money_amount = money_amount
         self.is_number_account_valid()
+        self.is_money_amount_None()
         self.is_money_amount_greater_than_0()
 
     def is_number_account_valid(self):
@@ -15,3 +16,7 @@ class MoneyTransferCommand:
     def is_money_amount_greater_than_0(self):
         if self.money_amount <= 0:
             raise Exception("Transfer money amount have to be grater than 0")
+
+    def is_money_amount_None(self):
+        if self.money_amount is None:
+            raise Exception("Transfer money amount can't be None")
