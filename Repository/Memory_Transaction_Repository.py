@@ -23,9 +23,7 @@ class MemoryTransactionRepository(metaclass=MemoryTransactionRepositoryMeta):
 
     def find_by_account_number(self, account_number: str):
         transactions = []
-        print(account_number)
         for transaction in self._transactions.values():
-            print(transaction.a_account, transaction.b_account)
             if transaction.a_account.account_number == account_number or transaction.b_account.account_number == account_number:
                 transactions.append(transaction)
         return transactions
