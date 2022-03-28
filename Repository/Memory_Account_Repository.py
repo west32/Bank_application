@@ -2,7 +2,7 @@ import uuid
 from Domain.Account import Account
 
 
-class AccountRepositoryMeta(type):
+class MemoryAccountRepositoryMeta(type):
     _instances = {}
 
     def __call__(self, *args, **kwargs):
@@ -12,7 +12,7 @@ class AccountRepositoryMeta(type):
         return self._instances[self]
 
 
-class AccountRepository(metaclass=AccountRepositoryMeta):
+class MemoryAccountRepository(metaclass=MemoryAccountRepositoryMeta):
     _accounts = {}
 
     def get_all(self):
