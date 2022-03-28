@@ -21,8 +21,8 @@ class Transaction:
         return {
             "id": self.uuid,
             "date": self.date,
-            "a_account": self.a_account.id,
-            "b_account": self.b_account.id,
+            "a_account_number": self.a_account.account_number,
+            "b_account_number": self.b_account.account_number,
             "money_amount": self.money_amount,
             "status": self.status.name
         }

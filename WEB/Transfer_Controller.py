@@ -4,7 +4,6 @@ from Service import Money_Transfer_Usecase
 from Service.Money_Transfer_Command import MoneyTransferCommand, MoneyTransferCommandException
 from WEB.Transfer_Request import TransferRequest
 
-
 transfers = Blueprint('transfers', __name__)
 
 
@@ -22,6 +21,4 @@ def transfer():
     except MoneyTransferCommandException as err:
         return jsonify({"message": err.message}), 400
 
-    return "wszystko git ziom", 200
-
-
+    return "Succes", 200

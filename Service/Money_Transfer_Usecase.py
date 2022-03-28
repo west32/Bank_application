@@ -23,9 +23,6 @@ class MoneyTransferUseCase:
         transaction.transfer()
         self.transactions_repository.status_update(transaction.uuid, transaction.status)
 
-#         nie bardzo rozumiem dlaczego tu po transferze wrzucamy status update skoro mamy juz w logice transferu
-#  wszystkie mozliwe opcje rozpatrzone, jesli jakis blad to ustawia sie satus REJECTED, jesli przechodzi to REALIZED
-# rozumiem zasadnosc takiej metody to zeby miec mozliwosc zmiany statusu pozniej recznie, to nie rozumiem po co ona tutaj.
 
 
 class TransferUseCaseException(MoneyTransferCommandException):

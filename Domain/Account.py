@@ -28,11 +28,8 @@ class Account:
     def block_account(self, transaction: str):
         if self.open_transaction is not None:
             raise Exception("Account has been blocked")
-        # self.open_transaction = transaction.uuid
         self.open_transaction = transaction
 
     def unlock_account(self, transaction: str):
-        # if self.open_transaction == transaction.uuid:
-        #     self.open_transaction = None
         if self.open_transaction == transaction:
             self.open_transaction = None

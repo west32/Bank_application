@@ -18,20 +18,13 @@ app = Flask(__name__)
 app.register_blueprint(transfers)
 app.register_blueprint(accounts)
 app.register_blueprint(transactions)
+
 app.run(debug=True)
 
 # TODO
-# napisac endpoint ktory zwraca wszystkie transakcje danego konta /accounts/123/transactions
-# testcase:
-# 1 wywołać endpoint transfer z commandem: a=123 b=789 100zl, a=789 b=456 200zl
-# 2 wywołać endpoint /accounts/123/transactions i /accounts/456/transactions
-# ten endpoint ma zwracac taka strukture
-# [
-#   {
-#       "id": "{uuid}",
-#       "date": "26.03.2022",
-#       "a_account": "{account_uuid}",
-#       "b_account": "{account_uuid}",
-#       "status": "{status}"
-#   }
-# ]
+# dodaje plik accounts.bartek na nowym branchu do projektu.
+# w klasie z repozytoriami tworze nowe repo o nawie FileAccountsRepository
+#  tam kopiuje wszystkie motody z klasy memoryaccoyntsrepo, kiedy aplikacja wstaje ja mam z pliku
+# kiedy bede wywolywal poszczzehgolne funkcje w tej klasie to one maja otwierac ten plik (wykonywac operacje na tym pliku)
+# to samo z transakcjami :D skoro mi tak swietnie idzie :D xDD
+#  napisac testy jednostkowe do naszych repozytoriow z plikow i te repozytoria nie byly wpiete do hexa
