@@ -1,36 +1,30 @@
-from Service.Money_Transfer_Command import MoneyTransferCommand
-from Service import Money_Transfer_Usecase
+from flask import Flask
+
 from Domain.Account import Account
+from WEB.Transfer_Controller import transfers
+from WEB.Account_Controller import accounts
+from WEB.Transaction_Controller import transactions
+from Repository.Memory_Account_Repository import MemoryAccountRepository
+from Repository.Memory_Transaction_Repository import MemoryTransactionRepository
+
+account_repository = MemoryAccountRepository()
+transaction_repository = MemoryTransactionRepository()
+account_repository.up_in(Account('123', 'Bartek', 444))
+account_repository.up_in(Account('456', 'Michal', 0))
+account_repository.up_in(Account('789', 'Lukasz', 333))
 
 
-def run_main():
-    repo = {
-        "123": Account('123', 'Bartek', 444, ),
-        "456": Account('456', 'Łukasz', 0),
-        "789": Account('789', 'Michał', 300, open_transaction="123")
-    }
-    use_case = Money_Transfer_Usecase.MoneyTransferUseCase(repo)
-    command_a = MoneyTransferCommand("123", "456", 100)
-    command_b = MoneyTransferCommand("456", "123", 50)
-    # command_e = MoneyTransferCommand("","456",99)
-    # command_e = MoneyTransferCommand("789","123",10)
-    # command_e = MoneyTransferCommand("123", "789", 10)
-    # command_e = MoneyTransferCommand("532", "123", 10)
-    # command_e = MoneyTransferCommand("123", "532", 10)
-    # command_e = MoneyTransferCommand('123','456',999)
-    # command_e = MoneyTransferCommand('123', None, 29)
-    # command_e = MoneyTransferCommand('123',"", 50)
-    # command_e = MoneyTransferCommand('123', '456', -29)
-    # command_e = MoneyTransferCommand('123', '456', 0)
-    use_case.transfer(command_a)
-    # use_case.transfer(command_b)
-    # use_case.transfer(command_e)
+app = Flask(__name__)
+app.register_blueprint(transfers)
+app.register_blueprint(accounts)
+app.register_blueprint(transactions)
 
+app.run(debug=True)
 
-
-# napisac w metodzie trasfer przed wykonaniem transferu block account
-#  i po wykonaniu unlock account
-
-
-if __name__ == "__main__":
-    run_main()
+# TODO
+# dodaje plik accounts.bartek na nowym branchu do projektu.
+# w klasie z repozytoriami tworze nowe repo o nawie FileAccountsRepository
+#  tam kopiuje wszystkie motody z klasy memoryaccoyntsrepo, kiedy aplikacja wstaje ja mam z pliku
+# kiedy bede wywolywal poszczzehgolne funkcje w tej klasie to one maja otwierac ten plik (wykonywac operacje na tym pliku)
+# to samo z transakcjami :D skoro mi tak swietnie idzie :D xDD
+#  napisac testy jednostkowe do naszych repozytoriow z plikow i te repozytoria nie byly wpiete do hexa
