@@ -9,7 +9,6 @@ class MoneyTransferUseCase:
         self.accounts_repository = MemoryAccountRepository()
         self.transactions_repository = MemoryTransactionRepository()
 
-
     def transfer(self, command_transfer: MoneyTransferCommand):
         a_account = self.accounts_repository.find_by_account_number(command_transfer.a_account_number)
         b_account = self.accounts_repository.find_by_account_number(command_transfer.b_account_number)
@@ -22,7 +21,6 @@ class MoneyTransferUseCase:
         self.transactions_repository.insert_transaction(transaction)
         transaction.transfer()
         self.transactions_repository.status_update(transaction.uuid, transaction.status)
-
 
 
 class TransferUseCaseException(MoneyTransferCommandException):
