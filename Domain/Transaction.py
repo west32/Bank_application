@@ -17,6 +17,16 @@ class Transaction:
     def __str__(self):
         return f" from account {self.a_account} to account {self.b_account} transfer {self.money_amount}, date: {self.date}, transaction id: {self.uuid}, Status: {self.status}"
 
+    def serialize(self):
+        return {
+            "id": self.uuid,
+            "date": self.date,
+            "a_account_number": self.a_account.account_number,
+            "b_account_number": self.b_account.account_number,
+            "money_amount": self.money_amount,
+            "status": self.status.name
+        }
+
     def block_accounts(self):
         self.a_account.block_account(self.uuid)
         self.b_account.block_account(self.uuid)
