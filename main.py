@@ -6,12 +6,13 @@ from WEB.Account_Controller import accounts
 from WEB.Transaction_Controller import transactions
 from Repository.Memory_Account_Repository import MemoryAccountRepository
 from Repository.Memory_Transaction_Repository import MemoryTransactionRepository
+from Repository.File_Accounts_Repository import FileAccountRepository
 
-account_repository = MemoryAccountRepository()
+account_repository = FileAccountRepository()
 transaction_repository = MemoryTransactionRepository()
-account_repository.up_in(Account('123', 'Bartek', 444))
-account_repository.up_in(Account('456', 'Michal', 0))
-account_repository.up_in(Account('789', 'Lukasz', 333))
+account_repository.up_in(Account('125', 'Bartek', 444))
+account_repository.up_in(Account('454', 'Michal', 0))
+account_repository.up_in(Account('782', 'Lukasz', 333))
 
 
 app = Flask(__name__)
