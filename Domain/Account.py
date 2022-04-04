@@ -7,7 +7,7 @@ class Account:
         self.id = id
 
     def __str__(self):
-        return f"[ {self.account_number}, name:{self.name}, balance:{self.balance} pln] "
+        return f"[ account_number: {self.account_number}, name:{self.name}, balance:{self.balance} pln] "
 
     def serialize(self):
         return {
