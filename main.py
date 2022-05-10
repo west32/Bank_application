@@ -11,8 +11,10 @@ from Repository.File_Accounts_Repository import FileAccountRepository
 account_repository = FileAccountRepository()
 transaction_repository = MemoryTransactionRepository()
 
-# account_repository.up_in(Account("575", "Kuba", 24))
-account_repository.up_in(Account("123", "Bartek", 1))
+account_repository.up_in(Account("575", "Kuba", 24))
+
+
+# account_repository.up_in(Account("123", "Bartek", 1, id="de75bc6d-6a4d-4d78-bafb-a1fcff4d96a8"))
 
 
 app = Flask(__name__)

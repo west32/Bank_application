@@ -1,5 +1,5 @@
 class Account:
-    def __init__(self, account_number, name, balance: float, open_transaction=None, id=None):
+    def __init__(self, account_number, name, balance: float, open_transaction=None, id =None):
         self.account_number = account_number
         self.name = name
         self.open_transaction = open_transaction
@@ -14,7 +14,7 @@ class Account:
             'name': self.name,
             'account_number': self.account_number,
             'account_balance': self.balance,
-            'id': self.id
+            'id': str(self.id)
         }
 
     def add_money(self, money_amount):
