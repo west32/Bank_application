@@ -27,9 +27,12 @@ class FileAccountRepository(metaclass=FileAccountRepositoryMeta):
                 accounts_list.append(serialized_account)
         return accounts_list
 
-    def save_repo_to_file(self, accounts_dict):
+    def save_repo_to_file(self, accounts_list):
+        serialized_accounts_list=[]
+        for account in accounts_list:
+            serialized_accounts_list.append(account.serialize())
         with open("accounts.bartek", "w", encoding="utf-8") as file:
-            json.dump(accounts_dict, file, indent=4)
+            json.dump(serialized_accounts_list, file, indent=4)
 
     def get_all(self):
         return self.load_repo_from_file()
@@ -43,29 +46,24 @@ class FileAccountRepository(metaclass=FileAccountRepositoryMeta):
 
     def up_in(self, account: Account):
         accounts_list = self.load_repo_from_file()
+        print("asfijj")
+
         if account.id is None:
             id = uuid.uuid4()
             account.id = id
+            if self.find_by_account_number(account.account_number) in accounts_list:
+                raise AccountRepositoryException ("no acces to this account")
         else:
+            account_pop = False
             for index, account_from_list in enumerate(accounts_list):
-                if account.account_number == account_from_list.account_number:
-                    pop_account = accounts_list.pop(index)
-                    print(pop_account)
-                    pop_account = account
-                    # pop_account = Account(account.account_number, account.name, account.balance)
-
-
-                elif account.id is not None and account.id not in account_from_list.id:
-                    raise AccountRepositoryException(" Account not found")
-
-        # print(f" lista po del {accounts_list}")
-        # print(f" konto ktore przekazujemy : {account} o id: {account.id}")
-        # account = account.serialize()
-        # print(f"konto po serializacji {account}")
-        # accounts_list.append(account)
-        # print(f"lista po dodaniu tego konta {accounts_list}")
-        #
-        # self.save_repo_to_file(accounts_list)
+                if account.id == account_from_list.id:
+                    accounts_list.pop(index)
+                    account_pop = True
+                    break
+            if not account_pop:
+                raise AccountRepositoryException("Account not found")
+        accounts_list.append(account)
+        self.save_repo_to_file(accounts_list)
 
         # accounts_list = self.load_repo_from_file()
         # if account

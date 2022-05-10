@@ -1,20 +1,20 @@
- [
+[
     {
-      "account_balance": 321.0,
-      "account_number": "123",
-      "id": "de75bc6d-6a4d-4d78-bafb-a1fcff4d96a8",
-      "name": "Bartek"
+        "name": "Michal",
+        "account_number": "456",
+        "account_balance": 0,
+        "id": "99612b5f-2261-429a-86b8-88e9fd641590"
     },
     {
-      "account_balance": 0,
-      "account_number": "456",
-      "id": "99612b5f-2261-429a-86b8-88e9fd641590",
-      "name": "Michal"
+        "name": "Lukasz",
+        "account_number": "789",
+        "account_balance": 456.0,
+        "id": "f64191dd-3ef6-4694-a0f8-de598285d779"
     },
     {
-      "account_balance": 456.0,
-      "account_number": "789",
-      "id": "f64191dd-3ef6-4694-a0f8-de598285d779",
-      "name": "Lukasz"
+        "name": "Bartek",
+        "account_number": "123",
+        "account_balance": 1,
+        "id": "de75bc6d-6a4d-4d78-bafb-a1fcff4d96a8"
     }
-  ]
+]
