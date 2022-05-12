@@ -10,5 +10,3 @@ def accounts_repo():
     value = accounts_dict.get_all()
 
     return jsonify(accounts=[account.serialize() for account in value])
-
-
