@@ -1,5 +1,7 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_mysqldb import MySQL
+from Domain.Account import Account
+from Utils.DataBaseConectionManager import DataBaseConectionManager
 
 class DataBaseAccountRepositoryMeta(type):
     _instances = {}
@@ -12,14 +14,21 @@ class DataBaseAccountRepositoryMeta(type):
 
 class DataBaseAccountRepository(metaclass=DataBaseAccountRepositoryMeta):
 
-    def connect(self, app):
-        app.config["MYSQL_HOST"] = "127.0.0.1"
-        app.config["MYSQL_USER"] = "root"
-        app.config["MYSQL_PASSWORD"] = "dupa123"
-        app.config["MYSQL_DB"] = "trans_acc"
-        app.config["MYSQL_PORT"] = 3307
-
-
+    @staticmethod
+    def _get_cursor():
+        db = DataBaseConectionManager()
+        return db.get_cursor()
 
     def get_all(self):
-        pass
+        cur = self._get_cursor()
+        cur.execute("""SELECT * FROM `account` """)
+        rv = cur.fetchall()
+        accounts_list = []
+        for element in rv:
+            account = Account(account_number=element[1],
+                              name=element[2],
+                              balance=element[3],
+                              id=element[0])
+            accounts_list.append(account)
+        return accounts_list
+
